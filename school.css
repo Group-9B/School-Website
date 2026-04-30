@@ -150,6 +150,42 @@
 
     .alumnus img { height: 100px; }
 }
+    /* =============================================
+   FIX — history pre overflow on mobile
+   ============================================= */
+
+.history {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.decoration {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+pre {
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .history {
+        width: 100%;
+        word-break: break-word;
+    }
+}
 
 /* Gallery page */
  *{
