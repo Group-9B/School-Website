@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ntare School</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color:#f9f5ef;
+}
+
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3e9dc;
+    padding: 15px;
+}
+
+.badge img {
+    border-radius: 50%;
+}
+
+
+.navbar {
+    background-color: #6a0dad;
+    padding: 10px;
+}
+
+.bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bar a:hover {
+    text-decoration: underline;
+}
+
+
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.hero h1 {
+    color: #6a0dad;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #555;
+}
+
+
+.container {
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #6a0dad;
+}
+
+
+
+.slider {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+
+.slide-track {
+    display: flex;
+    width: calc(260px * 10); 
+    animation: scroll 24s linear infinite;
+}
+
+
+.slide {
+    width: 250px;      
+    flex-shrink: 0;
+    margin-right: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;   
+    position: relative; 
+}
+
+
+.slide img {
+    width: 100%;
+    height: 170px;  
+    object-fit: cover;   
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.slide:hover img {
+    transform: scale(1.02);
+}
+
+.slide .news-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(106, 13, 173, 0.9), rgba(106, 13, 173, 0.6));
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    border-radius: 0 0 10px 10px;
+    transition: all 0.3s ease;
+}
+
+
+.news-overlay a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    transition: transform 0.2s, color 0.2s;
+}
+
+
+.news-overlay a:hover {
+    color: #ffdd55;
+    text-decoration: underline;
+    transform: scale(1.02);
+}
+
+.news-overlay a::after {
+    content: " ➤";
+    font-size: 12px;
+    transition: margin-left 0.2s;
+    display: inline-block;
+}
+
+.news-overlay a:hover::after {
+    margin-left: 5px;
+}
+
+
+@media (max-width: 600px) {
+    .slide .news-overlay {
+        padding: 8px 6px;
+    }
+    .news-overlay a {
+        font-size: 12px;
+    }
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); 
+    }
+}
+
+
+.slider:hover .slide-track {
+    animation-play-state: paused;
+}
+
+/* FOOTER */
+.foot {
+    background-color: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+}
+
+.foot p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .bar {
+        gap: 10px;
+    }
+
+    .slide {
+        width: 170px;          
+        margin-right: 8px;
+    }
+    
+    .slide img {
+        height: 130px;         
+        object-fit: cover;
+    }
+
+    .slide-track {
+        width: calc(178px * 10);
+    }
+}
+
+
+@media (max-width: 480px) {
+    .slide {
+        width: 150px;
+    }
+    .slide img {
+        height: 115px;
+    }
+    .slide-track {
+        width: calc(158px * 10);
+    }
+}
+
+/* --- Badge: smaller image on mobile --- */
+@media (max-width: 600px) {
+    .badge {
+        padding: 10px;
+    }
+    .badge img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+
+/* --- Navbar: stack links vertically on very small screens --- */
+@media (max-width: 380px) {
+    .bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .bar a {
+        font-size: 14px;
+    }
+}
+
+/* --- Hero: tighter padding and smaller text on mobile --- */
+@media (max-width: 600px) {
+    .hero {
+        padding: 25px 15px;
+    }
+    .hero p {
+        font-size: 14px;
+    }
+}
+
+/* --- Cards: reduce padding on small screens --- */
+@media (max-width: 600px) {
+    .container {
+        padding: 12px;
+        gap: 12px;
+    }
+    .card {
+        padding: 14px;
+    }
+    .card h3 {
+        font-size: 16px;
+    }
+    .card p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+/* --- Footer: smaller text and tighter padding on mobile --- */
+@media (max-width: 600px) {
+    .foot {
+        padding: 15px 10px;
+    }
+    .foot p {
+        font-size: 12px;
+    }
+}
+
+/* --- All images: never overflow their container --- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Prevent horizontal scroll on whole page --- */
+body {
+    overflow-x: hidden;
+}
+
+
+</style>
+<link rel="stylesheet" href="school.css">
+</head>
+
+<body>
+
+<header>
+<div class="badge">
+    <img src="badge.jpeg" width="70" height="70" alt="School Badge">
+</div>
+</header>
+
+<nav class="navbar">
+    <div class="bar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="academics.html">Academics</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Welcome to Ntare School</h1>
+    <p>The Lion Roars – Excellence, Discipline, Leadership</p>
+</section>
+
+<section class="container">
+
+<div class="card">
+  <div class="slider">
+    <div class="slide-track">
+      
+      <div class="slide">
+          <img src="rota.jpg" alt="Rota image">
+          <div class="news-overlay">
+              <a href="#" target="_blank">🏆 Soccer gala League </a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="library.jpg" alt="Library image">
+          <div class="news-overlay">
+              <a href="#" target="_blank"> Staff and students</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="lion.jpg" alt="Lion pride">
+          <div class="news-overlay">
+              <a href="#" target="_blank">🦁 Leadership Camp 2026</a>
+          </div>
+      </div>
+      
+      <div class="slide">
+          <img src="rota.jpg" alt="Rota duplicate for seamless loop">
+          <div class="news-overlay">
+              <a href="#" target="_blank">Alumni Meetup</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="library.jpg" alt="Library duplicate">
+          <div class="news-overlay">
+              <a href="#" target="_blank">📖 Exam Timetable Out</a>
+          </div>
+      </div>
+      
+      
+      <div class="slide">
+          <img src="rota.jpg" alt="Rota seamless">
+          <div class="news-overlay">
+              <a href="#" target="_blank">🏆 Champions League Victory</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="library.jpg" alt="Library seamless">
+          <div class="news-overlay">
+              <a href="#" target="_blank">📚 New Library Opening</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="lion.jpg" alt="Lion seamless">
+          <div class="news-overlay">
+              <a href="#" target="_blank">🦁 Leadership Camp 2026</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="rota.jpg" alt="Rota extra">
+          <div class="news-overlay">
+              <a href="#" target="_blank">🎓 Alumni Meetup</a>
+          </div>
+      </div>
+      <div class="slide">
+          <img src="library.jpg" alt="Library extra">
+          <div class="news-overlay">
+              <a href="#" target="_blank">📖 Exam Timetable Out</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <div class="card">
+        <h3>Motto</h3>
+        <p>Better Your best</p>
+    </div>
+
+    <div class="card">
+        <h3>Vision</h3>
+        <p>
+            To be a centre of excellence in producing all-round, <br>
+            responsible and productive citizens
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Mission</h3>
+        <p> To produce God-fearing citizens<br>
+        who are ready to take up the challenges<br>
+        of leadership in a modern Uganda
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>School History</h3>
+        <p>
+Ntare School was founded in 1956 <br>
+by the Congregation of the  <br>
+Holy Ghost Fathers in Mbarara, <br>
+western Uganda. The school  <br>
+established to provide quality <br>
+education while developing strong <br>
+moral values and leadership skills <br>
+among young men <br>
+Over the years, Ntare School has <br>
+grown into one of Uganda’s leading <br>
+secondary schools, known for its <br>
+academic excellence, discipline, <br>
+and leadership training. It has <br>
+built a strong reputation as a <br>
+center for nurturing responsible <br>
+and capable citizens <br>
+The school has produced many <br>
+influential leaders,  <br>
+Yoweri Museveni and Paul Kagame <br>
+which has earned it recognition <br>
+as a “school of leaders” in East Africa <br>
+Today, Ntare School continues to uphold <br>
+its tradition of excellence, focusing on <br>
+shaping students into disciplined, <br>
+knowledgeable, and responsible  <br>
+ready to contribute to society <br>
+        </p>
+    </div>
+
+</section>
+
+<footer class="foot">
+    <p><strong>Ntare School</strong></p>
+    <p>The Lion Roars</p>
+    <p>Email: ntare@gmail.com | Contact: 0658985679</p>
+    <p>Twitter: @Ntare</p>
+    <p>© 2026 Ntare School | Developed by stars</p>
+</footer>
+
+</body>
+</html>

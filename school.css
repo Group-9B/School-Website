@@ -1,0 +1,1085 @@
+
+/*About Page*/
+#overview{
+    background-color: black;
+    text-align: center;
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 3px 6px 5px blue,-3px -6px 5px magenta;
+     padding:15px;
+}
+.history{
+    font-size: 1.3em;
+    color:rgb(0, 0, 0);
+    border: 10px solid rgb(38, 5, 61);
+    text-align: center;
+    padding: 50px;
+    margin-left:0px;
+    font-family: 'Times New Roman', Times, serif;
+}
+#background{
+    background-color: rgb(38,5,6);
+    text-align: center;
+    color:rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 3px 6px 5px blue,-3px -6px 5px magenta;
+    padding:15px;
+}
+.back{
+    color:black;
+    margin:50px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+#headteachers{
+    background-color: rgb(38,5,61);
+    text-align: center;
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 3px 6px 5px blue,-3px -6px 5px magenta;
+    padding:15px;
+}
+.alumnus{
+    border:5px solid black;
+   text-align: center;
+   background-color: black;
+}
+@media screen and (max-width:600px ) {
+    body{
+        width :100%
+    }
+    
+}
+
+.decoration{
+    background-color: #00ffff;
+    margin:0px;
+}
+
+/* =============================================
+   RESPONSIVE — TABLET (max-width: 768px)
+   ============================================= */
+@media screen and (max-width: 768px) {
+
+    .history {
+        font-size: 1em;
+        padding: 25px;
+        border-width: 6px;
+    }
+
+    .back {
+        margin: 25px;
+        font-size: 1em;
+    }
+
+    .alumnus img {
+        height: 140px;
+    }
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE (max-width: 600px)
+   ============================================= */
+@media screen and (max-width: 600px) {
+
+    .badge { padding: 10px; }
+    .badge img { width: 50px; height: 50px; }
+
+    .bar { gap: 10px; }
+
+    .decoration { padding: 10px; }
+
+    #overview { font-size: 17px; padding: 10px; }
+    #background, #headteachers { font-size: 15px; padding: 10px; }
+
+    .history {
+        font-size: 0.85em;
+        padding: 12px;
+        border-width: 4px;
+        text-align: left;
+    }
+
+    .back {
+        margin: 12px;
+        font-size: 0.9em;
+        line-height: 1.7;
+    }
+
+    .alumnus {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .alumnus img {
+        height: 120px;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    .foot { padding: 15px 10px; }
+    .foot p { font-size: 12px; }
+}
+
+/* =============================================
+   RESPONSIVE — SMALL PHONES (max-width: 380px)
+   ============================================= */
+@media screen and (max-width: 380px) {
+
+    .bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .bar a { font-size: 14px; }
+    #overview { font-size: 15px; }
+
+    .history {
+        font-size: 0.78em;
+        padding: 8px;
+    }
+
+    .back {
+        margin: 8px;
+        font-size: 0.85em;
+    }
+
+    .alumnus img { height: 100px; }
+}
+
+/* Gallery page */
+ *{
+      margin:0;
+      padding:0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background:pink;
+    }
+
+    .headerr{
+        display:flex;
+      background-color: rgb(10, 167, 167);
+      height:100px;
+      padding:20px;
+      align-items:center;
+      margin:0;
+      width:100%;
+    }
+    
+    .headerr img{
+        height:280px;
+        width:170px;
+        margin:0;
+        top:0;
+        left:0;
+        position:absolute;
+    }
+    .headerr .buttons{
+        display:flex;
+        gap:300px;
+
+    }
+    .headerr .buttons h1{
+        font-weight: 800;
+        font-style: italic;
+        color:black;
+    }
+    .headerr .buttons button{
+        height:70px;
+        width:100px;
+        background-color: black;
+        color: rgb(230, 230, 234);
+        padding:2opx;
+        border-radius:10px;
+        font-size:30px;
+        font-weight:500;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    h1 {
+      text-align: center;
+    }
+
+    .tab {
+      display: flex;
+      justify-content:center;
+      gap: 100px;
+      margin-bottom: 20px;
+      margin:0;
+      width:100%;
+      height:100px;
+      background-color: pink;
+      align-items:center;
+    }
+
+    .tab button {
+      width:150px;
+      height:50px;
+      padding: 10px;
+      border: none;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .tab button:hover {
+      background: #555;
+    }
+
+    .gallery {
+        margin:0;
+      display:flex;
+      gap: 20px;
+      width:100%;
+      height:100%;
+
+    }
+
+    .gallery img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Hide other sections by default */
+    #classr, #libr, #labaratory, #campusg {
+      display: none;
+    }
+
+    /* =============================================
+   GALLERY PAGE — FULL STYLES + RESPONSIVE
+   ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: pink;
+    overflow-x: hidden;
+}
+
+/* --- Header --- */
+.headerr {
+    display: flex;
+    background-color: rgb(10, 167, 167);
+    height: 100px;
+    padding: 20px;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+.headerr img {
+    height: 280px;
+    width: 170px;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.headerr .buttons {
+    display: flex;
+    gap: 300px;
+}
+
+.headerr .buttons h1 {
+    font-weight: 800;
+    font-style: italic;
+    color: black;
+}
+
+.headerr .buttons button {
+    height: 70px;
+    width: 100px;
+    background-color: black;
+    color: rgb(230, 230, 234);
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* --- Tab buttons --- */
+.tab {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin: 0;
+    width: 100%;
+    height: 100px;
+    background-color: pink;
+    align-items: center;
+}
+
+.tab button {
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab button:hover {
+    background: #555;
+}
+
+/* --- Gallery --- */
+.gallery {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Hide other sections by default */
+#classr, #libr, #labaratory, #campusg {
+    display: none;
+}
+
+/* =============================================
+   RESPONSIVE — TABLET (max-width: 768px)
+   ============================================= */
+@media screen and (max-width: 768px) {
+
+    .headerr {
+        height: auto;
+        padding: 15px 15px 15px 100px;
+    }
+
+    .headerr img {
+        height: 100px;
+        width: 80px;
+    }
+
+    .headerr .buttons {
+        gap: 40px;
+        align-items: center;
+    }
+
+    .headerr .buttons h1 {
+        font-size: 20px;
+    }
+
+    .headerr .buttons button {
+        height: 45px;
+        width: 80px;
+        font-size: 18px;
+    }
+
+    .tab {
+        gap: 20px;
+        height: auto;
+        padding: 15px 10px;
+        flex-wrap: wrap;
+    }
+
+    .tab button {
+        width: 120px;
+        height: 45px;
+        font-size: 13px;
+    }
+
+    .gallery {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .gallery img {
+        width: calc(50% - 10px);
+        height: 220px;
+    }
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE (max-width: 600px)
+   ============================================= */
+@media screen and (max-width: 600px) {
+
+    .headerr {
+        height: auto;
+        padding: 10px 10px 10px 80px;
+        gap: 10px;
+    }
+
+    .headerr img {
+        height: 70px;
+        width: 60px;
+    }
+
+    .headerr .buttons {
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .headerr .buttons h1 {
+        font-size: 16px;
+    }
+
+    .headerr .buttons button {
+        height: 35px;
+        width: 65px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+
+    .tab {
+        gap: 8px;
+        padding: 12px 8px;
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tab button {
+        width: 90px;
+        height: 38px;
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .gallery {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 220px;
+    }
+}
+
+/* =============================================
+   RESPONSIVE — SMALL PHONES (max-width: 380px)
+   ============================================= */
+@media screen and (max-width: 380px) {
+
+    .headerr {
+        padding: 8px 8px 8px 70px;
+    }
+
+    .headerr img {
+        height: 55px;
+        width: 50px;
+    }
+
+    .headerr .buttons h1 {
+        font-size: 13px;
+    }
+
+    .headerr .buttons button {
+        height: 30px;
+        width: 55px;
+        font-size: 12px;
+    }
+
+    .tab button {
+        width: 75px;
+        height: 34px;
+        font-size: 10px;
+    }
+
+    .gallery img {
+        height: 180px;
+    }
+}
+    /* Academics Page*/
+   
+
+
+main{
+    padding: 10px;
+    background-color: pink;
+
+}
+.mm {
+    color: maroon;
+
+}
+.grown{
+    background-color: peru;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background: whitesmoke;
+
+}
+#td{
+    align-items: center;
+    color:blue;
+    border: none;
+}
+table th, table td{
+    padding: 15px;
+    
+    text-align: left;
+
+}
+.sport-A{
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+
+}
+#list{
+    color: #333;
+}
+.hero{
+    align-content: center;
+}
+#curriculum table{
+    align-items: center;
+    align-content: center;
+
+}
+.sport{
+    text-align: center;
+    
+}
+#books{
+    width:40%;
+    float :left;
+}
+#teachers{
+    width:40%;
+    float :right;
+}
+#co-curricular {
+    
+    display: block;
+    clear : both;
+}
+.book{
+    background-color:whitesmoke;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    gap:20px;
+    margin-top: 50px;
+
+}
+
+#co-curricular h2{
+    color: maroon;
+}
+#curriculum h2{
+    color: yellow; 
+}
+.table h3{
+    color: maroon;
+}
+#curriculum p{
+    color: white;
+}
+#books {
+   color: maroon; 
+}
+#t{
+    color:blue;
+    border: none;
+}
+#teachers {
+    color:maroon;
+} 
+
+.sport {
+     color: maroon;
+
+}
+.table{
+    display: flex;
+    
+    gap: 50px;
+    margin-top: 20px;
+    background-color: whitesmoke;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+.myimage{
+    background-image: url(camp.jpg);
+    background-repeat: no-repeat;
+    background-position: relative;
+    background-attachment: fixed;
+    background-size: cover;
+    color: blue;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    opacity: 2,0;
+    width: 100%;
+    height: 300px;
+}
+
+/* =============================================
+   ACADEMICS PAGE RESPONSIVE
+   ============================================= */
+
+/* --- Tablet (max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+
+    .myimage {
+        height: 200px;
+        background-attachment: scroll;
+    }
+
+    .table {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #books {
+        width: 100%;
+        float: none;
+    }
+
+    #teachers {
+        width: 100%;
+        float: none;
+    }
+
+    .book {
+        font-size: 16px;
+        margin-top: 30px;
+    }
+
+    table th, table td {
+        padding: 10px;
+        font-size: 15px;
+    }
+}
+
+/* --- Mobile (max-width: 600px) --- */
+@media screen and (max-width: 600px) {
+
+    main {
+        padding: 6px;
+    }
+
+    .myimage {
+        height: 160px;
+        background-attachment: scroll;
+        font-size: 1em;
+    }
+
+    .myimage h2 {
+        font-size: 16px;
+    }
+
+    .myimage p {
+        font-size: 13px;
+    }
+
+    .mm {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Tables stack on mobile */
+    .table {
+        flex-direction: column;
+        gap: 15px;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    /* Books and teachers stack vertically */
+    #books {
+        width: 100%;
+        float: none;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #teachers {
+        width: 100%;
+        float: none;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #co-curricular {
+        clear: both;
+        padding: 10px;
+    }
+
+    .book {
+        font-size: 15px;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .sport-A {
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .sport {
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #list {
+        padding-left: 20px;
+        font-size: 14px;
+    }
+
+    /* Navbar */
+    .bar {
+        gap: 10px;
+    }
+
+    /* Badge */
+    .badge { padding: 10px; }
+    .badge img { width: 50px; height: 50px; }
+
+    /* Footer */
+    .foot { padding: 15px 10px; }
+    .foot p { font-size: 12px; }
+}
+
+/* --- Small phones (max-width: 380px) --- */
+@media screen and (max-width: 380px) {
+
+    .bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .bar a { font-size: 14px; }
+
+    .myimage {
+        height: 130px;
+        font-size: 0.85em;
+    }
+
+    table th, table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .book {
+        font-size: 13px;
+    }
+
+    #books, #teachers {
+        font-size: 13px;
+    }
+}
+
+/* CONTACT PAGE */
+.final{
+  display: flex; /*puts the children divs in a row*/
+  gap : 30px; /* space between them */
+}
+
+.mess {
+ /* makes them equal width */ text-align: justify; border-radius: 10%;
+  padding: 20px; background-color: whitesmoke;
+}
+ 
+.overlay h1 {font-size: 50px;margin: 0;}
+.overlay p {font-size: 30px;color: #ffd700; }
+
+#sch{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;flex-direction: right; margin: 0;}
+hr{height: 5px;border:none; background: yellow; border-style: groove;}
+#slogan{
+    font-style: italic;
+    font-size: 15px;
+    color: aliceblue;
+    margin: 0;
+    
+}
+footer{
+    background-color:dark blue;}
+table{
+    width: 50%;
+    border-radius: 50%; border-collapse: collapse;
+    border-style: groove;
+}
+.icon{
+    align-items: right; display: flex;}
+
+button{
+    color:whitesmoke;background:rgb(2, 19, 2); text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 10%; height: 50px; width: 70px;
+}
+button:hover{ background-color: royalblue;}
+.tel{
+    display: flex;
+    gap:200px;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    font-weight:500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.mes{
+    width:380px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+.mess input{
+padding:10px;
+height:20px;
+width:200px;
+
+}
+.mess textarea{
+resize:none;
+width:200px;
+}
+
+
+.nta {  position: relative;
+  width: 100%;  height: 300px;   overflow: hidden;}
+
+.nta img {width: 100%;height: 100%; object-fit: cover; opacity: 90%; }
+
+.overlay {position: absolute;
+  top: 50%;left: 50px;transform: translateY(-50%);color: white;
+}
+
+
+/* =============================================
+   CONTACT PAGE RESPONSIVE
+   ============================================= */
+
+/* --- Tablet (max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+
+    .final {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .mess {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .tel {
+        gap: 50px;
+        padding: 15px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .mes {
+        width: 100%;
+        gap: 15px;
+    }
+
+    .mess input {
+        width: 100%;
+    }
+
+    .mess textarea {
+        width: 100%;
+    }
+
+    .nta {
+        height: 220px;
+    }
+
+    .overlay h1 {
+        font-size: 35px;
+    }
+
+    .overlay p {
+        font-size: 20px;
+    }
+
+    button {
+        width: 100%;
+        height: 45px;
+        border-radius: 8px;
+    }
+}
+
+/* --- Mobile (max-width: 600px) --- */
+@media screen and (max-width: 600px) {
+
+    /* Badge */
+    .badge { padding: 10px; }
+    .badge img { width: 50px; height: 50px; }
+
+    /* Hero */
+    .hero {
+        padding: 20px 10px;
+    }
+
+    .hero h1 {
+        font-size: 20px;
+    }
+
+    /* Banner image */
+    .nta {
+        height: 160px;
+    }
+
+    .overlay {
+        left: 15px;
+    }
+
+    .overlay h1 {
+        font-size: 22px;
+    }
+
+    .overlay p {
+        font-size: 15px;
+    }
+
+    /* Contact layout stacks fully */
+    .final {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .mess {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    /* Address/Email/Phone section */
+    .tel {
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border: none;
+    }
+
+    /* Form fields full width */
+    .mes {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .mess input {
+        width: 100%;
+        height: 35px;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .mess textarea {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    /* Submit button full width */
+    button {
+        width: 100%;
+        height: 45px;
+        font-size: 15px;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    /* Questions section text */
+    .mess h2 {
+        font-size: 18px;
+    }
+
+    .mess p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    .foot { padding: 15px 10px; }
+    .foot p { font-size: 12px; }
+
+    /* Navbar */
+    .bar { gap: 10px; }
+}
+
+/* --- Small phones (max-width: 380px) --- */
+@media screen and (max-width: 380px) {
+
+    .bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .bar a { font-size: 14px; }
+
+    .nta { height: 130px; }
+
+    .overlay h1 { font-size: 18px; }
+    .overlay p { font-size: 13px; }
+
+    .mess input {
+        height: 32px;
+        font-size: 13px;
+    }
+
+    .mess textarea {
+        font-size: 13px;
+    }
+
+    button {
+        height: 40px;
+        font-size: 13px;
+    }
+}
