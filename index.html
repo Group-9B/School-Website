@@ -3,491 +3,747 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ntare School</title>
+<title>Ntare School – The Lion Roars</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+  --royal: #4a0080;
+  --royal-dark: #2d004d;
+  --royal-mid: #6a0dad;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --cream: #faf6f0;
+  --dark: #111015;
+  --text-muted: #888;
+  --white: #fff;
 }
 
-body{
-    font-family: Arial, sans-serif;
-    background-color:#f9f5ef;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
 
-.badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f3e9dc;
-    padding: 15px;
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
 }
 
-.badge img {
-    border-radius: 50%;
+/* ─── HEADER / BADGE ─── */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: var(--royal-dark);
+  position: relative;
+  z-index: 100;
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
+.badge-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #2d004d;
+}
+
+.badge-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.brand-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.brand-text span {
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── NAVBAR ─── */
 .navbar {
-    background-color: #6a0dad;
-    padding: 10px;
+  background: var(--royal);
+  border-bottom: 2px solid var(--gold);
 }
 
 .bar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
 }
 
 .bar a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  position: relative;
+  transition: color 0.25s;
 }
 
-.bar a:hover {
-    text-decoration: underline;
+.bar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; right: 50%;
+  height: 2px;
+  background: var(--gold);
+  transition: left 0.25s, right 0.25s;
 }
 
+.bar a:hover { color: var(--gold-light); }
+.bar a:hover::after { left: 12%; right: 12%; }
 
+/* ─── HERO BACKGROUND SLIDER ─── */
 .hero {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #fff;
+  position: relative;
+  height: 92vh;
+  min-height: 520px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero h1 {
-    color: #6a0dad;
-    margin-bottom: 10px;
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: 300%;  /* 3 slides */
+  animation: bgSlide 15s ease-in-out infinite;
 }
 
-.hero p {
-    color: #555;
+.hero-slide {
+  width: 33.333%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
 }
 
+.hero-slide:nth-child(1) { background-image: url('rota.jpg'); }
+.hero-slide:nth-child(2) { background-image: url('library.jpg'); }
+.hero-slide:nth-child(3) { background-image: url('lion.jpg'); }
 
-.container {
-    display:flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+/* Dark gradient overlay on each slide */
+.hero-slides::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,0,40,0.55) 0%,
+    rgba(10,0,25,0.72) 60%,
+    rgba(5,0,15,0.88) 100%
+  );
+  pointer-events: none;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    align-item:center;
-    padding:40px 40px;
-    justify-content:center;
+@keyframes bgSlide {
+  0%,  28%  { transform: translateX(0); }
+  33%,  61%  { transform: translateX(-33.333%); }
+  66%, 94%  { transform: translateX(-66.666%); }
+  100%       { transform: translateX(0); }
 }
 
-.card h3 {
-    margin-bottom: 10px;
-    color: #6a0dad;
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 20px;
 }
 
-
-
-.slider {
-    overflow: hidden;
-    width: 100%;
-    border-radius: 10px;
-    position: relative;
+.hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.3s forwards;
 }
 
-
-.slide-track {
-    display: flex;
-    width: calc(260px * 10); 
-    animation: scroll 24s linear infinite;
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.08;
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s forwards;
 }
 
-
-.slide {
-    width: 250px;      
-    flex-shrink: 0;
-    margin-right: 10px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;   
-    position: relative; 
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
 }
 
-
-.slide img {
-    width: 100%;
-    height: 170px;  
-    object-fit: cover;   
-    display: block;
-    border-radius: 10px;
-    transition: transform 0.2s ease;
+.hero-tagline {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.8s forwards;
 }
 
-.slide:hover img {
-    transform: scale(1.02);
+.hero-btn {
+  display: inline-block;
+  padding: 13px 36px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  opacity: 0;
+  animation: fadeUp 0.9s 1s forwards;
 }
 
-.slide .news-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(106, 13, 173, 0.9), rgba(106, 13, 173, 0.6));
-    color: white;
-    padding: 12px 10px;
-    text-align: center;
-    backdrop-filter: blur(2px);
-    border-radius: 0 0 10px 10px;
-    transition: all 0.3s ease;
+.hero-btn:hover {
+  background: var(--gold);
+  color: var(--royal-dark);
 }
 
-
-.news-overlay a {
-    color: white;
-    text-decoration: none;
-    font-family: 'Segoe UI', 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    display: block;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    transition: transform 0.2s, color 0.2s;
+/* Slide indicator dots */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 20;
 }
 
-
-.news-overlay a:hover {
-    color: #ffdd55;
-    text-decoration: underline;
-    transform: scale(1.02);
+.hero-dots span {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.5);
+  transition: background 0.3s;
 }
 
-.news-overlay a::after {
-    content: " ➤";
-    font-size: 12px;
-    transition: margin-left 0.2s;
-    display: inline-block;
+.hero-dots span.active { background: var(--gold); border-color: var(--gold); }
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  right: 36px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
 }
 
-.news-overlay a:hover::after {
-    margin-left: 5px;
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
 }
 
-
-@media (max-width: 600px) {
-    .slide .news-overlay {
-        padding: 8px 6px;
-    }
-    .news-overlay a {
-        font-size: 12px;
-    }
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
 }
 
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); 
-    }
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
 }
 
-
-.slider:hover .slide-track {
-    animation-play-state: paused;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* FOOTER */
-.foot {
-    background-color: #222;
-    color: #ddd;
-    text-align: center;
-    padding: 20px;
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-.foot p {
-    margin: 5px 0;
-    font-size: 14px;
+/* ─── GOLD DIVIDER ─── */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 40px;
+  background: var(--royal-dark);
 }
 
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 22px;
-    }
-
-    .bar {
-        gap: 10px;
-    }
-
-    .slide {
-        width: 170px;          
-        margin-right: 8px;
-    }
-    
-    .slide img {
-        height: 130px;         
-        object-fit: cover;
-    }
-
-    .slide-track {
-        width: calc(178px * 10);
-    }
+.gold-divider .line {
+  flex: 1;
+  max-width: 220px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
 }
 
+.gold-divider .lion-icon {
+  font-size: 1.4rem;
+  color: var(--gold);
+}
+
+/* ─── INFO CARDS ─── */
+.cards-section {
+  padding: 60px 40px;
+  background: var(--cream);
+}
+
+.section-label {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-label p {
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--royal-mid);
+  margin-bottom: 10px;
+}
+
+.section-label h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--royal-dark);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: var(--royal-dark);
+  border-radius: 12px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+}
+
+.info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(74, 0, 128, 0.25);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+}
+
+.info-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.info-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+}
+
+/* ─── HISTORY SECTION ─── */
+.history-section {
+  padding: 70px 40px;
+  background: linear-gradient(135deg, var(--royal-dark) 0%, #1a004a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.history-section::before {
+  content: 'NTARE';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14rem;
+  font-weight: 700;
+  color: rgba(201,168,76,0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.history-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.history-year {
+  text-align: center;
+}
+
+.history-year .big-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+
+.history-year p {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 8px;
+}
+
+.history-text .section-label {
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+.history-text .section-label p { color: var(--gold); }
+.history-text .section-label h2 { color: var(--white); }
+
+.history-text p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.9;
+}
+
+.history-text p + p { margin-top: 14px; }
+
+.alumni-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.alumni-tag {
+  padding: 7px 16px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 40px;
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+}
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--dark);
+  padding: 50px 40px 28px;
+  border-top: 1px solid rgba(201,168,76,0.2);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.footer-brand h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.footer-brand .motto {
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+}
+
+.footer-brand p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.footer-col h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.footer-col a, .footer-col p {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--white); }
+
+.footer-bottom {
+  max-width: 900px;
+  margin: 22px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .site-header { padding: 12px 20px; }
+  .cards-section, .history-section { padding: 50px 20px; }
+  
+  .history-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .history-year .big-year { font-size: 4rem; }
+  .history-text .section-label { text-align: center; }
+  
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  
+  .footer-bottom { justify-content: center; text-align: center; }
+
+  .scroll-hint { display: none; }
+}
 
 @media (max-width: 480px) {
-    .slide {
-        width: 150px;
-    }
-    .slide img {
-        height: 115px;
-    }
-    .slide-track {
-        width: calc(158px * 10);
-    }
+  .hero { height: 85vh; }
+  .bar a { padding: 12px 14px; font-size: 0.75rem; letter-spacing: 0.08em; }
 }
-
-/* --- Badge: smaller image on mobile --- */
-@media (max-width: 600px) {
-    .badge {
-        padding: 10px;
-    }
-    .badge img {
-        width: 50px !important;
-        height: 50px !important;
-    }
-}
-
-/* --- Navbar: stack links vertically on very small screens --- */
-@media (max-width: 380px) {
-    .bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-    .bar a {
-        font-size: 14px;
-    }
-}
-
-/* --- Hero: tighter padding and smaller text on mobile --- */
-@media (max-width: 600px) {
-    .hero {
-        padding: 25px 15px;
-    }
-    .hero p {
-        font-size: 14px;
-    }
-}
-
-/* --- Cards: reduce padding on small screens --- */
-@media (max-width: 600px) {
-    .container {
-        padding: 12px;
-        gap: 12px;
-    }
-    .card {
-        padding: 14px;
-    }
-    .card h3 {
-        font-size: 16px;
-    }
-    .card p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-}
-
-/* --- Footer: smaller text and tighter padding on mobile --- */
-@media (max-width: 600px) {
-    .foot {
-        padding: 15px 10px;
-    }
-    .foot p {
-        font-size: 12px;
-    }
-}
-
-/* --- All images: never overflow their container --- */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* --- Prevent horizontal scroll on whole page --- */
-body {
-    overflow-x: hidden;
-}
-
-
 </style>
-<link rel="stylesheet" href="school.css">
 </head>
-
 <body>
 
-<header>
-<div class="badge">
-    <img src="badge.jpeg" width="70" height="70" alt="School Badge">
-</div>
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <div class="header-brand">
+    <div class="badge-ring">
+      <img src="badge.jpeg" alt="Ntare School Badge">
+    </div>
+    <div class="brand-text">
+      <h2>Ntare School</h2>
+      <span> Mbarara, Uganda</span>
+    </div>
+  </div>
 </header>
 
+<!-- ─── NAVBAR ─── -->
 <nav class="navbar">
-    <div class="bar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="academics.html">Academics</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-    </div>
+  <div class="bar">
+    <a href="#">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Academics</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </div>
 </nav>
 
+<!-- ─── HERO BACKGROUND SLIDER ─── -->
 <section class="hero">
-    <h1>Welcome to Ntare School</h1>
-    <p>The Lion Roars – Excellence, Discipline, Leadership</p>
+  <div class="hero-slides">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Mbarara, Uganda · Since 1956</p>
+    <h1 class="hero-title">Welcome to<br><em>Ntare School</em></h1>
+    <p class="hero-tagline">The Lion Roars — Excellence · Discipline · Leadership</p>
+    <a href="#" class="hero-btn">Discover Our Legacy</a>
+  </div>
+
+  <div class="hero-dots">
+    <span class="active" id="dot0"></span>
+    <span id="dot1"></span>
+    <span id="dot2"></span>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
-<section class="container">
+<!-- ─── GOLD DIVIDER ─── -->
+<div class="gold-divider">
+  <div class="line"></div>
+  <span class="lion-icon"><img src = "ncuncu.jpeg" height ="100px"width ="100px"</span>
+  <div class="line"></div>
+</div>
 
-<div class="card">
-  <div class="slider">
-    <div class="slide-track">
-      
-      <div class="slide">
-          <img src="rota.jpg" alt="Rota image">
-          <div class="news-overlay">
-              <a href="#" target="_blank">🏆 Soccer gala League </a>
-          </div>
+<!-- ─── INFO CARDS ─── -->
+<section class="cards-section">
+  <div class="section-label">
+    <p>Our Foundation</p>
+    <h2>Pillars of Excellence</h2>
+  </div>
+
+  <div class="cards-grid">
+    <div class="info-card">
+      <div class="card-icon">⚡</div>
+      <h3>Motto</h3>
+      <p>Better Your Best — a relentless pursuit of personal growth, holding every Lion to the highest standard.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon">🎯</div>
+      <h3>Vision</h3>
+      <p>To be a centre of excellence in producing all-round, responsible and productive citizens ready for a modern world.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon">🌍</div>
+      <h3>Mission</h3>
+      <p>To produce God-fearing citizens who are equipped and ready to take up the challenges of leadership in a modern Uganda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCHOOL HISTORY ─── -->
+<section class="history-section">
+  <div class="history-inner">
+    <div class="history-year">
+      <span class="big-year">1956</span>
+      <p>Founded</p>
+    </div>
+
+    <div class="history-text">
+      <div class="section-label">
+        <p>Our Heritage</p>
+        <h2>A School of Leaders</h2>
       </div>
-      <div class="slide">
-          <img src="library.jpg" alt="Library image">
-          <div class="news-overlay">
-              <a href="#" target="_blank"> Staff and students</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="lion.jpg" alt="Lion pride">
-          <div class="news-overlay">
-              <a href="#" target="_blank">🦁 Leadership Camp 2026</a>
-          </div>
-      </div>
-      
-      <div class="slide">
-          <img src="rota.jpg" alt="Rota duplicate for seamless loop">
-          <div class="news-overlay">
-              <a href="#" target="_blank">Alumni Meetup</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="library.jpg" alt="Library duplicate">
-          <div class="news-overlay">
-              <a href="#" target="_blank">📖 Exam Timetable Out</a>
-          </div>
-      </div>
-      
-      
-      <div class="slide">
-          <img src="rota.jpg" alt="Rota seamless">
-          <div class="news-overlay">
-              <a href="#" target="_blank">🏆 Champions League Victory</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="library.jpg" alt="Library seamless">
-          <div class="news-overlay">
-              <a href="#" target="_blank">📚 New Library Opening</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="lion.jpg" alt="Lion seamless">
-          <div class="news-overlay">
-              <a href="#" target="_blank">🦁 Leadership Camp 2026</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="rota.jpg" alt="Rota extra">
-          <div class="news-overlay">
-              <a href="#" target="_blank">🎓 Alumni Meetup</a>
-          </div>
-      </div>
-      <div class="slide">
-          <img src="library.jpg" alt="Library extra">
-          <div class="news-overlay">
-              <a href="#" target="_blank">📖 Exam Timetable Out</a>
-          </div>
+      <p>Ntare School was founded in 1956 by the Congregation of the Holy Ghost Fathers in Mbarara, western Uganda — established to provide quality education while developing strong moral values and leadership skills among young men.</p>
+      <p>Over the decades, Ntare has grown into one of Uganda's premier secondary schools, revered for its academic rigour, discipline, and unique capacity to forge capable leaders. It has earned its reputation as the <em>"School of Leaders"</em> across East Africa.</p>
+      <p>Among its most distinguished alumni are Heads of State, shaping the destiny of entire nations.</p>
+      <div class="alumni-row">
+        <span class="alumni-tag">Yoweri Museveni</span>
+        <span class="alumni-tag">Paul Kagame</span>
+        <span class="alumni-tag">Many More Leaders</span>
       </div>
     </div>
   </div>
-</div>
-    
-    <div class="card">
-        <h3>Motto</h3>
-        <p>Better Your best</p>
-    </div>
-
-    <div class="card">
-        <h3>Vision</h3>
-        <p>
-            To be a centre of excellence in producing all-round, <br>
-            responsible and productive citizens
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Mission</h3>
-        <p> To produce God-fearing citizens<br>
-        who are ready to take up the challenges<br>
-        of leadership in a modern Uganda
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>School History</h3>
-        <p>
-Ntare School was founded in 1956 <br>
-by the Congregation of the  <br>
-Holy Ghost Fathers in Mbarara, <br>
-western Uganda. The school  <br>
-established to provide quality <br>
-education while developing strong <br>
-moral values and leadership skills <br>
-among young men <br>
-Over the years, Ntare School has <br>
-grown into one of Uganda’s leading <br>
-secondary schools, known for its <br>
-academic excellence, discipline, <br>
-and leadership training. It has <br>
-built a strong reputation as a <br>
-center for nurturing responsible <br>
-and capable citizens <br>
-The school has produced many <br>
-influential leaders,  <br>
-Yoweri Museveni and Paul Kagame <br>
-which has earned it recognition <br>
-as a “school of leaders” in East Africa <br>
-Today, Ntare School continues to uphold <br>
-its tradition of excellence, focusing on <br>
-shaping students into disciplined, <br>
-knowledgeable, and responsible  <br>
-ready to contribute to society <br>
-        </p>
-    </div>
-
 </section>
 
-<footer class="foot">
-    <p><strong>Ntare School</strong></p>
-    <p>The Lion Roars</p>
-    <p>Email: ntare@gmail.com | Contact: 0658985679</p>
-    <p>Twitter: @Ntare</p>
-    <p>© 2026 Ntare School | Developed by stars</p>
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Ntare School</h3>
+      <p class="motto">THE LION ROARS</p>
+      <p>Shaping disciplined, knowledgeable, and responsible citizens since 1956. Mbarara, Western Uganda.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Academics</a>
+      <a href="#">Gallery</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>ntare@gmail.com</p>
+      <p>0658 985 679</p>
+      <p>Twitter: @Ntare</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Ntare School. All rights reserved.</p>
+    <p>Developed with ♥ by Prudence</p>
+  </div>
 </footer>
+
+<script>
+  // Sync hero dots with CSS animation (15s total, 3 slides)
+  const dots = document.querySelectorAll('.hero-dots span');
+  let current = 0;
+  
+  function updateDots(index) {
+    dots.forEach(d => d.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  setInterval(() => {
+    current = (current + 1) % 3;
+    updateDots(current);
+  }, 5000);
+</script>
 
 </body>
 </html>
