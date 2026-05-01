@@ -3,390 +3,463 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ntare School</title>
+<title>Ntare School – The Lion's Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --lion: #6a0dad;
+  --lion-dark: #4b0a99;
+  --lion-glow: rgba(106,13,173,0.18);
+  --gold: #f5c842;
+  --bg: #f5f0e8;
+  --card: #fff;
+  --text: #1a1220;
+  --muted: #7a6e8a;
+  --radius: 14px;
+  --sidebar-w: 290px;
 }
 
-body{
-    font-family: Arial, sans-serif;
-    background-color:#f9f5ef;
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-
-.badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f3e9dc;
-    padding: 15px;
+.badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #f3e9dc 0%, #ede0cc 100%);
+  padding: 14px 24px;
+  border-bottom: 2px solid var(--lion);
+  position: relative;
+  z-index: 10;
 }
 
-.badge img {
-    border-radius: 50%;
+.badge-header .school-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-
-.navbar {
-    background-color: #6a0dad;
-    padding: 10px;
+.badge-header img {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--lion);
+  object-fit: cover;
 }
 
-.bar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+.badge-header .school-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--lion);
+  line-height: 1.1;
 }
 
-.bar a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.badge-header .school-motto {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.bar a:hover {
-    text-decoration: underline;
+.menu-btn {
+  position: relative;
+  width: 52px; height: 52px;
+  background: var(--lion);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s, transform .25s;
+  border: none;
+  outline: none;
+  flex-shrink: 0;
+  z-index: 1100;
+}
+.menu-btn:hover { background: var(--lion-dark); transform: scale(1.06); }
+.menu-btn.active { background: var(--lion-dark); border-radius: 12px 12px 0 12px; }
+
+.burger { width: 22px; height: 16px; display: flex; flex-direction: column; justify-content: space-between; }
+.burger span {
+  height: 2.5px; width: 100%; background: #fff; border-radius: 2px;
+  transition: transform .35s ease, opacity .25s ease;
+  transform-origin: center;
+}
+.menu-btn.active .burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menu-btn.active .burger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-btn.active .burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.sidebar {
+  position: fixed;
+  top: 92px; right: 0;
+  width: var(--sidebar-w);
+  height: calc(100vh - 92px);
+  background: linear-gradient(160deg, #1a0a2e 0%, #2d1350 100%);
+  transform: translateX(110%);
+  transition: transform .38s cubic-bezier(.4,0,.2,1);
+  z-index: 1050;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid rgba(245,200,66,.15);
+  border-radius: 16px 0 0 16px;
+}
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-inner { flex: 1; overflow-y: auto; padding: 28px 0 24px; }
+.sidebar-inner::-webkit-scrollbar { width: 4px; }
+.sidebar-inner::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+
+.sidebar-section { margin-bottom: 8px; }
+
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(245,200,66,.7);
+  padding: 6px 26px 10px;
 }
 
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 26px;
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.sidebar-link i { font-size: 18px; opacity: .75; }
+.sidebar-link:hover {
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  border-left-color: var(--gold);
+}
+.sidebar-link.active {
+  background: rgba(245,200,66,.1);
+  color: var(--gold);
+  border-left-color: var(--gold);
+  font-weight: 500;
+}
+.sidebar-link.active i { opacity: 1; }
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin: 10px 20px;
+}
+
+.sidebar-footer {
+  padding: 16px 26px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.sidebar-footer p {
+  font-size: 11px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.5;
+}
+.sidebar-footer strong { color: rgba(255,255,255,.6); }
+
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(3px);
+  z-index: 1040;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+.overlay.visible { opacity: 1; pointer-events: all; }
 
 .hero {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #fff;
+  padding: 48px 28px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(106,13,173,.12), transparent);
+  pointer-events: none;
+}
 .hero h1 {
-    color: #6a0dad;
-    margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  color: var(--lion);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
 }
-
-.hero p {
-    color: #555;
+.hero .subtitle {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.hero .back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 18px;
+  font-size: 13px; font-weight: 500;
+  color: var(--lion);
+  text-decoration: none;
+  background: rgba(106,13,173,.08);
+  border: 1px solid rgba(106,13,173,.2);
+  padding: 7px 16px;
+  border-radius: 30px;
+  transition: background .2s;
 }
+.hero .back-link:hover { background: rgba(106,13,173,.15); }
 
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px 32px;
 }
-
-.card h3 {
-    margin-bottom: 10px;
-    color: #6a0dad;
+.tab-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: 30px;
+  border: 1.5px solid var(--lion);
+  background: transparent;
+  color: var(--lion);
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
 }
+.tab-btn:hover { background: var(--lion-glow); transform: translateY(-1px); }
+.tab-btn.active { background: var(--lion); color: #fff; }
 
+.gallery-wrapper { padding: 0 24px 60px; max-width: 1200px; margin: 0 auto; }
 
+.gallery-section { display: none; }
+.gallery-section.visible { display: grid; }
+.gallery-section { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 
-.slider {
-    overflow: hidden;
-    width: 100%;
-    border-radius: 10px;
-    position: relative;
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #ddd;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  transition: transform .3s ease, box-shadow .3s;
 }
+.gallery-item:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 12px 32px rgba(106,13,173,.2); }
 
-
-.slide-track {
-    display: flex;
-    width: calc(260px * 10); 
-    animation: scroll 24s linear infinite;
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .4s ease;
 }
+.gallery-item:hover img { transform: scale(1.06); }
 
-
-.slide {
-    width: 250px;      
-    flex-shrink: 0;
-    margin-right: 10px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;   
-    position: relative; 
+.gallery-item .img-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 14px 12px;
+  background: linear-gradient(to top, rgba(26,10,46,.85), transparent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s, transform .3s;
 }
+.gallery-item:hover .img-label { opacity: 1; transform: translateY(0); }
 
-
-.slide img {
-    width: 100%;
-    height: 170px;  
-    object-fit: cover;   
-    display: block;
-    border-radius: 10px;
-    transition: transform 0.2s ease;
+.gallery-item .img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+  background: linear-gradient(135deg, #ede0f5, #d5b5f0);
+  color: var(--lion);
 }
-
-.slide:hover img {
-    transform: scale(1.02);
-}
-
-.slide .news-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(106, 13, 173, 0.9), rgba(106, 13, 173, 0.6));
-    color: white;
-    padding: 12px 10px;
-    text-align: center;
-    backdrop-filter: blur(2px);
-    border-radius: 0 0 10px 10px;
-    transition: all 0.3s ease;
-}
-
-
-.news-overlay a {
-    color: white;
-    text-decoration: none;
-    font-family: 'Segoe UI', 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    display: block;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    transition: transform 0.2s, color 0.2s;
-}
-
-
-.news-overlay a:hover {
-    color: #ffdd55;
-    text-decoration: underline;
-    transform: scale(1.02);
-}
-
-.news-overlay a::after {
-    content: " ➤";
-    font-size: 12px;
-    transition: margin-left 0.2s;
-    display: inline-block;
-}
-
-.news-overlay a:hover::after {
-    margin-left: 5px;
-}
-
+.gallery-item .img-placeholder i { font-size: 36px; opacity: .5; }
+.gallery-item .img-placeholder span { font-size: 12px; opacity: .6; font-weight: 500; }
 
 @media (max-width: 600px) {
-    .slide .news-overlay {
-        padding: 8px 6px;
-    }
-    .news-overlay a {
-        font-size: 12px;
-    }
+  .badge-header { padding: 12px 16px; }
+  .badge-header .school-name { font-size: 16px; }
+  .hero { padding: 32px 16px 20px; }
+  .gallery-wrapper { padding: 0 14px 48px; }
+  .gallery-section { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
 }
-
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); 
-    }
-}
-
-
-.slider:hover .slide-track {
-    animation-play-state: paused;
-}
-
-/* FOOTER */
-.foot {
-    background-color: #222;
-    color: #ddd;
-    text-align: center;
-    padding: 20px;
-}
-
-.foot p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 22px;
-    }
-
-    .bar {
-        gap: 10px;
-    }
-
-    .slide {
-        width: 170px;          
-        margin-right: 8px;
-    }
-    
-    .slide img {
-        height: 130px;         
-        object-fit: cover;
-    }
-
-    .slide-track {
-        width: calc(178px * 10);
-    }
-}
-
-
-@media (max-width: 480px) {
-    .slide {
-        width: 150px;
-    }
-    .slide img {
-        height: 115px;
-    }
-    .slide-track {
-        width: calc(158px * 10);
-    }
-}
-
 </style>
-<link rel="stylesheet" href="school.css">
 </head>
-
 <body>
 
-<header>
-<div class="badge">
-    <img src="badge.jpeg" width="70" height="70" alt="School Badge">
-</div>
+<div class="overlay" id="overlay"></div>
+
+<header class="badge-header">
+  <div class="school-identity">
+    <img src="badge.jpeg" alt="Ntare School Badge">
+    <div>
+      <div class="school-name">Ntare School</div>
+      <div class="school-motto">The Lion Roars</div>
+    </div>
+  </div>
+  <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
+    <div class="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </button>
 </header>
 
-<nav class="navbar">
-    <div class="bar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="academics.html">Academics</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <a href="index.html" class="sidebar-link"><i class="ri-home-4-line"></i>Home</a>
+      <a href="about.html" class="sidebar-link"><i class="ri-information-line"></i>About Us</a>
+      <a href="academics.html" class="sidebar-link"><i class="ri-book-open-line"></i>Academics</a>
+      <a href="gallery.html" class="sidebar-link active"><i class="ri-gallery-line"></i>Gallery</a>
+      <a href="contact.html" class="sidebar-link"><i class="ri-mail-line"></i>Contact</a>
     </div>
-</nav>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Gallery</div>
+      <a href="#" class="sidebar-link js-tab" data-tab="all"><i class="ri-grid-line"></i>All Photos</a>
+      <a href="#" class="sidebar-link js-tab" data-tab="classrooms"><i class="ri-slideshow-3-line"></i>Classrooms</a>
+      <a href="#" class="sidebar-link js-tab" data-tab="library"><i class="ri-library-line"></i>Library</a>
+      <a href="#" class="sidebar-link js-tab" data-tab="lab"><i class="ri-flask-line"></i>Laboratory</a>
+      <a href="#" class="sidebar-link js-tab" data-tab="campus"><i class="ri-landscape-line"></i>Campus</a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Quick Links</div>
+      <a href="#" class="sidebar-link"><i class="ri-newspaper-line"></i>Latest News</a>
+      <a href="#" class="sidebar-link"><i class="ri-calendar-event-line"></i>Events</a>
+    </div>
+
+  </div>
+
+  <div class="sidebar-footer">
+    <p><strong>Ntare School</strong><br>
+    ntare@gmail.com · 0658985679 · Twitter: @Ntare<br>
+    © 2026 — Developed by Stars</p>
+  </div>
+</aside>
 
 <section class="hero">
-    <div class= "headerr">
-  <div class ="buttons">
-  <p>
-    <h1>The LION's  Gallery</h1>
-  </p>
-  <p>
-  <a href = "index.html"><button> Back </button></a>
-  </p>
-  </div>
-    <img src = "image.png">
+  <h1>The Lion's Gallery</h1>
+  <p class="subtitle">Moments from our pride</p>
+  <a href="index.html" class="back-link"><i class="ri-arrow-left-line"></i>Back to Home</a>
+</section>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="all">All</button>
+  <button class="tab-btn" data-tab="classrooms">Classrooms</button>
+  <button class="tab-btn" data-tab="library">Library</button>
+  <button class="tab-btn" data-tab="lab">Laboratory</button>
+  <button class="tab-btn" data-tab="campus">Campus</button>
 </div>
 
-<div class="tab">
-  <button id="allimages">ALL</button>
-  <button id="classrooms">CLASS ROOMS</button>
-  <button id="lib">LIBRARY</button>
-  <button id="lab">LABORATORY</button>
-  <button id="camp">CAMPUS</button>
-</div>
-
-<div class="gallery">
+<div class="gallery-wrapper">
 
   <!-- ALL -->
-  <div id="gallr">
-    <img src="classroom.jpg" alt="Classroom">
-    <img src="lib.jpg" alt="Library">
-    <img src="library.jpg" alt="Library">
-    <img src="lb.jpg" alt="Library">
-    <img src="lab.jpg" alt="Lab">
-    <img src="labs.jpg" alt="Lab">
-    <img src="camp.jpg" alt="Campus">
-    <img src="campus.jpg" alt="Campus">
+  <div class="gallery-section visible" data-section="all">
+    <div class="gallery-item"><img src="classroom.jpg" alt="Classroom" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-slideshow-3-line"></i><span>Classroom</span></div><div class="img-label">Classroom</div></div>
+    <div class="gallery-item"><img src="lib.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
+    <div class="gallery-item"><img src="library.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
+    <div class="gallery-item"><img src="lb.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
+    <div class="gallery-item"><img src="lab.jpg" alt="Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-flask-line"></i><span>Lab</span></div><div class="img-label">Laboratory</div></div>
+    <div class="gallery-item"><img src="labs.jpg" alt="Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-flask-line"></i><span>Lab</span></div><div class="img-label">Laboratory</div></div>
+    <div class="gallery-item"><img src="camp.jpg" alt="Campus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-landscape-line"></i><span>Campus</span></div><div class="img-label">Campus</div></div>
+    <div class="gallery-item"><img src="campus.jpg" alt="Campus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-landscape-line"></i><span>Campus</span></div><div class="img-label">Campus</div></div>
   </div>
 
-  <!-- CLASSROOM -->
-  <div id="classr">
-    <img src="classroom.jpg" alt="Classroom">
+  <!-- CLASSROOMS -->
+  <div class="gallery-section" data-section="classrooms">
+    <div class="gallery-item"><img src="classroom.jpg" alt="Classroom" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-slideshow-3-line"></i><span>Classroom</span></div><div class="img-label">Classroom</div></div>
   </div>
 
   <!-- LIBRARY -->
-  <div id="libr">
-    <img src="lib.jpg" alt="Library">
-    <img src="library.jpg" alt="Library">
-    <img src="lb.jpg" alt="Library">
+  <div class="gallery-section" data-section="library">
+    <div class="gallery-item"><img src="lib.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
+    <div class="gallery-item"><img src="library.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
+    <div class="gallery-item"><img src="lb.jpg" alt="Library" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-library-line"></i><span>Library</span></div><div class="img-label">Library</div></div>
   </div>
 
   <!-- LAB -->
-  <div id="labaratory">
-    <img src="lab.jpg" alt="Lab">
-    <img src="labs.jpg" alt="Lab">
+  <div class="gallery-section" data-section="lab">
+    <div class="gallery-item"><img src="lab.jpg" alt="Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-flask-line"></i><span>Lab</span></div><div class="img-label">Laboratory</div></div>
+    <div class="gallery-item"><img src="labs.jpg" alt="Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-flask-line"></i><span>Lab</span></div><div class="img-label">Laboratory</div></div>
   </div>
 
   <!-- CAMPUS -->
-  <div id="campusg">
-    <img src="campus.jpg" alt="Campus">
+  <div class="gallery-section" data-section="campus">
+    <div class="gallery-item"><img src="camp.jpg" alt="Campus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-landscape-line"></i><span>Campus</span></div><div class="img-label">Campus</div></div>
+    <div class="gallery-item"><img src="campus.jpg" alt="Campus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><i class="ri-landscape-line"></i><span>Campus</span></div><div class="img-label">Campus</div></div>
   </div>
 
 </div>
 
-<script>
-const allimages = document.getElementById("allimages");
-const classrooms = document.getElementById("classrooms");
-const lib = document.getElementById("lib");
-const lab = document.getElementById("lab");
-const camp = document.getElementById("camp");
-
-const gallr = document.getElementById("gallr");
-const classr = document.getElementById("classr");
-const libr = document.getElementById("libr");
-const labaratory = document.getElementById("labaratory");
-const campusg = document.getElementById("campusg");
-
-function hideAll() {
-  gallr.style.display = "none";
-  classr.style.display = "none";
-  libr.style.display = "none";
-  labaratory.style.display = "none";
-  campusg.style.display = "none";
-}
-
-allimages.addEventListener("click", () => {
-  hideAll();
-  gallr.style.display = "block";
-});
-
-classrooms.addEventListener("click", () => {
-  hideAll();
-  classr.style.display = "block";
-});
-
-lib.addEventListener("click", () => {
-  hideAll();
-  libr.style.display = "block";
-});
-
-lab.addEventListener("click", () => {
-  hideAll();
-  labaratory.style.display = "block";
-});
-
-camp.addEventListener("click", () => {
-  hideAll();
-  campusg.style.display = "block";
-});
-</script>
-</section>
-
-<footer class="foot">
-    <p><strong>Ntare School</strong></p>
-    <p>The Lion Roars</p>
-    <p>Email: ntare@gmail.com | Contact: 0658985679</p>
-    <p>Twitter: @Ntare</p>
-    <p>© 2026 Ntare School | Developed by stars</p>
+<footer style="background:#1a0a2e;color:rgba(255,255,255,.6);text-align:center;padding:28px 20px;font-size:13px;line-height:2;">
+  <p style="color:#f5c842;font-family:'Playfair Display',serif;font-size:16px;margin-bottom:4px;">Ntare School</p>
+  <p>The Lion Roars</p>
+  <p>ntare@gmail.com · 0658985679 · Twitter: @Ntare</p>
+  <p style="margin-top:8px;font-size:11px;opacity:.45;">© 2026 Ntare School — Developed by Stars</p>
 </footer>
 
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('visible');
+  menuBtn.classList.add('active');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('visible');
+  menuBtn.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+overlay.addEventListener('click', closeSidebar);
+
+function switchTab(tabName) {
+  document.querySelectorAll('.gallery-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-section="${tabName}"]`).classList.add('visible');
+  document.querySelector(`.tab-btn[data-tab="${tabName}"]`).classList.add('active');
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+document.querySelectorAll('.js-tab').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    switchTab(link.dataset.tab);
+    closeSidebar();
+  });
+});
+</script>
 </body>
 </html>
